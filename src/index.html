@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elitmus - Website</title>
+    <link href="/dist/output.css" rel="stylesheet">
+</head>
+<body>
+    <div class="lg:flex md:flex">
+        <div class="bg-blue-500 lg:w-1/2 sm:h-1/2 lg:min-h-screen md:w-1/2 md:min-h-screen grid place-content-center px-2">
+            <h1 class="text-4xl text-slate-300 text-center">
+                Welcome to the world of Curiosity..........
+            </h1>
+        </div>
+        <div class="lg:w-1/2 sm:h-1/2 md:w-1/2 grid place-content-center">
+            <div class="grid place-content-center">
+                <label for="username" class="font-bold my-1">Email:</label>
+                <input type="text" id="email" placeholder="Enter your Email" class="border border-black rounded-full p-2 w-80">
+                <label for="password" class="font-bold my-1">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter your Password" id="password" class="border border-black rounded-full p-2 w-80">
+                <button class="bg-blue-500 border border-black rounded-full hover:cursor-pointer p-2 text-white text-bold sm:mt-6 mt-10 grid" id="login">Login</button>
+                <div class="grid place-content-center">
+                    <p>-----or-----</p>
+                </div>
+                <div class="flex place-content-center sm:mt-2 mt-9">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="?" class="h-7 mr-5 hover:cursor-pointer" id="google">
+                    <img src="/Facebook_f_logo_(2021).svg.png" alt="?" class="h-7 ml-5">
+                </div>
+                <div class="grid place-content-center sm:mt-0 mt-4">
+                    <p>Don't have an account? <a href="signUp.html">Create one</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyA54gj7C2sfEBg1NLx-YGH27P301QQvBXk",
+          authDomain: "elitmusproject-47650.firebaseapp.com",
+          projectId: "elitmusproject-47650",
+          storageBucket: "elitmusproject-47650.appspot.com",
+          messagingSenderId: "469931202086",
+          appId: "1:469931202086:web:71f6d09246447a4cf778e7",
+          measurementId: "G-0KC5611MV3"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        //const database = database();
+
+        document.querySelector('#login').addEventListener('click', function(){
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                // ...
+                alert("Login Successful");
+                window.location = 'home.html';
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage + " " + errorCode);
+            });
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/firebase.User
+                    const uid = user.uid;
+                    // ...
+                } else {
+                    // User is signed out
+                    // ...
+                }
+            });
+        })
+
+        document.querySelector('#google').addEventListener('click', function(){
+            signInWithPopup(auth, provider)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert("Login Successful");
+                window.location = 'home.html';
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage + " " + errorCode);
+            })
+        })
+      </script>
+</body>
+</html>
