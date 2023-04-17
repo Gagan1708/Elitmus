@@ -25,7 +25,6 @@
                 </div>
                 <div class="flex place-content-center sm:mt-2 mt-9">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="?" class="h-7 mr-5 hover:cursor-pointer" id="google">
-                    <img src="/Facebook_f_logo_(2021).svg.png" alt="?" class="h-7 ml-5">
                 </div>
                 <div class="grid place-content-center sm:mt-0 mt-4">
                     <p>Don't have an account? <a href="/src/signUp.html">Create one</a></p>
@@ -70,7 +69,11 @@
                 const user = userCredential.user;
                 // ...
                 alert("Login Successful");
-                window.location = '/src/home.html';
+                if(email == "adminemail@gmail.com"){
+                    window.location = '/src/admindash.html';
+                } else{
+                    window.location = '/src/home.html';
+                }
             })
             .catch((error) => {
                 const errorCode = error.code;
