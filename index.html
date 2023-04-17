@@ -44,13 +44,14 @@
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-          apiKey: "AIzaSyA54gj7C2sfEBg1NLx-YGH27P301QQvBXk",
-          authDomain: "elitmusproject-47650.firebaseapp.com",
-          projectId: "elitmusproject-47650",
-          storageBucket: "elitmusproject-47650.appspot.com",
-          messagingSenderId: "469931202086",
-          appId: "1:469931202086:web:71f6d09246447a4cf778e7",
-          measurementId: "G-0KC5611MV3"
+            apiKey: "AIzaSyAbzQxgyPmVuUxJIvCEtypNJFjvxPgRctg",
+            authDomain: "elitmusproject-e1590.firebaseapp.com",
+            databaseURL: "https://elitmusproject-e1590-default-rtdb.firebaseio.com",
+            projectId: "elitmusproject-e1590",
+            storageBucket: "elitmusproject-e1590.appspot.com",
+            messagingSenderId: "149903193522",
+            appId: "1:149903193522:web:1fa16f41c7a470bb2720ab",
+            measurementId: "G-EJXX317RME"
         };
       
         // Initialize Firebase
@@ -75,17 +76,6 @@
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 alert(errorMessage + " " + errorCode);
-            });
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    // User is signed in, see docs for a list of available properties
-                    // https://firebase.google.com/docs/reference/js/firebase.User
-                    const uid = user.uid;
-                    // ...
-                } else {
-                    // User is signed out
-                    // ...
-                }
             });
         })
 
