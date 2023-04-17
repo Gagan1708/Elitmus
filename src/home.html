@@ -3,9 +3,114 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Elitmus - Website</title>
+    <link href="/dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="home.css">
 </head>
-<body>
-    <h1>This is the home page</h1>
-</body>
+<body class="">
+    <nav class="p-5 bg-blue-400  shadow md:flex md:items-center md:justify-between">
+      <div class="flex justify-between items-center ">
+        <span class="text-2xl font-[Poppins] cursor-pointer">
+          QuizCluePuzzle
+        </span>
+  
+        <span class="text-3xl cursor-pointer mx-2 md:hidden block">
+          <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+        </span>
+      </div>
+  
+      <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-blue-400 w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+        <li class="mx-4 my-6 md:my-0">
+          <a href="home.html" class="text-xl hover:text-white font-[Poppins] duration-500">HOME</a>
+        </li>
+        <!-- <li class="mx-4 my-6 md:my-0">
+          <a href="#" class="text-xl hover:text-white font-[Poppins] duration-500">LEADERBOARD</a>
+        </li> -->
+        <li class="mx-4 my-6 md:my-0">
+          <a href="about.html" class="text-xl hover:text-white font-[Poppins] duration-500">ABOUT</a>
+        </li>
+        <!-- <li class="mx-4 my-6 md:my-0">
+          <a href="dashboard.html" class="text-xl hover:text-white font-[Poppins] duration-500">DASHBOARD</a>
+        </li> -->
+  
+        <button class="bg-blue-400 material-symbols-outlined px-6 py-2 mx-4 hover:text-white rounded " id="signOut">
+          logout
+        </button>
+      </ul>
+    </nav>
+
+    <div>
+        <h1 class="text-5xl m-10 font-bold font-[Poppins]">
+            Hi Rookie!!
+        </h1>
+        <p class="mx-10 mt-0 font-bold font-[Poppins]">Welcome to the world of curiosity.........</p>
+    </div>
+    
+    <div class="grid justify-center place-content-center align-middle text-center sm:mt-16 sm:m-0 m-28 shadow-2xl rounded-2xl p-16 py-28">
+        <h1 class="text-4xl font-semibold mb-6 font-[Poppins]">Select Level</h1>
+        <button class="bg-blue-400 hover:text-white my-4 py-4 px-20 font-[Poppins] rounded-full font-bold  hover:shadow-2xl" id="level1">Level 1</button>
+        <button class="bg-blue-400 hover:text-white my-4 py-4 px-8 font-[Poppins] rounded-full font-bold hover:shadow-2xl" id="level2">Level 2</button>
+        <button class="bg-blue-400 hover:text-white my-4 py-4 px-8 font-[Poppins] rounded-full font-bold hover:shadow-2xl" id="level3">Level 3</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAbzQxgyPmVuUxJIvCEtypNJFjvxPgRctg",
+            authDomain: "elitmusproject-e1590.firebaseapp.com",
+            databaseURL: "https://elitmusproject-e1590-default-rtdb.firebaseio.com",
+            projectId: "elitmusproject-e1590",
+            storageBucket: "elitmusproject-e1590.appspot.com",
+            messagingSenderId: "149903193522",
+            appId: "1:149903193522:web:1fa16f41c7a470bb2720ab",
+            measurementId: "G-EJXX317RME"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        document.querySelector('#signOut').addEventListener('click', function(){
+            signOut(auth).then(() => {
+            // Sign-out successful.
+                window.location.replace('/index.html');
+            }).catch((error) => {
+            // An error happened.
+            });
+        })
+    </script>
+    <script>
+      function Menu(e){
+        let list = document.querySelector('ul');
+        e.name === 'menu' ? (e.name = "close",list.classList.add('top-[80px]') , list.classList.add('opacity-100')) :( e.name = "menu" ,list.classList.remove('top-[80px]'),list.classList.remove('opacity-100'))
+      }
+
+
+      document.getElementById('level1').addEventListener('click', function(){
+        window.location = '/src/Level1/level1.html'
+      })
+
+      document.getElementById('level2').addEventListener('click', function(){
+        window.location = '/src/Level2/level2.html'
+      })
+
+      document.getElementById('level3').addEventListener('click', function(){
+        window.location = '/src/Level3/level3.html'
+      })
+
+
+    </script>
+  </body>
+  
 </html>

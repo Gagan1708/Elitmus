@@ -17,12 +17,8 @@
             <div class="grid place-content-center">  
                 <label for="username" class="font-bold my-1">User Name:</label>
                 <input type="text" id="username" placeholder="Enter your Username" class="border border-black rounded-full p-2 w-80">
-                <label for="username" class="font-bold my-1">Email:</label>
-                <input type="text" id="email" placeholder="Enter your Email" class="border border-black rounded-full p-2 w-80">
-                <label for="password" class="font-bold my-1">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Enter your Password" id="password" class="border border-black rounded-full p-2 w-80">
                     <!-- <input type="submit" value="SignUp"  onclick="register()"> -->
-                <button class="bg-blue-500 border border-black rounded-full hover:cursor-pointer p-2 text-white text-bold mt-10 grid" id="signup">Continue</button>
+                <button class="bg-blue-500 border border-black rounded-full hover:cursor-pointer p-2 text-white text-bold mt-10 grid" id="signup">SignUp</button>
                 <!-- <div class="grid place-content-center">
                     <p>-----or-----</p>
                 </div>
@@ -60,30 +56,39 @@
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
 
-        document.querySelector('#signup').addEventListener('click', function(){
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                // ...
-                alert("User Created");
-                if(email == "adminemail@gmail.com"){
-                    window.location.replace('admindash.html');
-                } else{
-                    window.location.replace('home.html');
-                }
+        const db = getDatabase(app);
+
+        const user = auth.currentUser;
+
+        var username = document.getElementById('username').value;
+        function InsertData(){
+            var email = "";
+            if (user !== null) {
+                // The user object has basic properties such as display name, email, etc.
+                // const displayName = user.displayName;
+                var email = user.email;
+                // const photoURL = user.photoURL;
+                // const emailVerified = user.emailVerified;
+
+                // The user's ID, unique to the Firebase project. Do NOT use
+                // this value to authenticate with your backend server, if
+                // you have one. Use User.getToken() instead.
+                const uid = user.uid;
+            }
+            set(ref(db, "TheUsers/"+username), {
+                Username: username,
+                Email: email
+            })
+            .then(() => {
+                alert("User Created Successfully");
+                window.location.replace('home.html');
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-                alert(errorMessage+" "+errorCode);
-            });
+                alert("Error Occured");
+            })
+        }
 
-        })
-
+        document.querySelector('#signup').addEventListener('click', InsertData);
       </script>
 </body>
 </html>
