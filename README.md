@@ -11,7 +11,7 @@ This is a puzzle based on quiz, in which there are three level and the user need
 
 ## Deployment
 
-The project has been deployed in netlify and to experience the deployed version of this project click on below link. 
+The project has been deployed on netlify and to experience the deployed version of this project click on below link. 
 
 ```bash
   https://643c968c1b10f44d37524d1b--melodious-chimera-61bb0a.netlify.app/
