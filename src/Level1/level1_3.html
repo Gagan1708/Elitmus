@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="level1_win.css">
 </head>
 <body>
-    <h1 class="m-12 text-2xl bg-blue-400 p-6">Level1 - Solve to reach the next step</h1>
+    <h1 class="m-12 text-2xl bg-blue-400 p-6">Level1 - Solve clue to get badge</h1>
     <div class="m-4 lg:mx-36">
         <p id="q1" class="p-4 bg-slate-300 font-bold"></p>
         <div><p id="q1o1" class="m-2 rounded-full bg-slate-100 p-4 hover:shadow-2xl"></p></div>
@@ -30,8 +30,8 @@
         <div><p id="q3o3" class="m-2 rounded-full bg-slate-100 p-4 hover:shadow-2xl"></p></div>
     </div>
 
-    <div class="m-6">
-        <button class="bg-slate-400 p-4 rounded-full font-bold hover:bg-blue-400 hover:shadow-2xl" id="submit">
+    <div class="m-6 grid">
+        <button class="bg-slate-400 p-4 rounded-full font-bold hover:bg-blue-400 hover:shadow-2xl lg:mx-36 m-4" id="submit">
             Go Forward
         </button>
     </div>
@@ -41,7 +41,7 @@
             <img src="/src/bronze.png" alt="">
             <h2>Congratulations!</h2>
             <p>You have successfully solved all the clues and cleared Level-1. You earned Bronze badge.</p>
-            <button id="winButton">Continue to Level-2</button>
+            <button id="winButton" onclick="window.location.replace('/src/home.html')">Continue to Level-2</button>
         </div>
     </div>
     <div class="container">
